@@ -26,7 +26,6 @@
 			var query, page = 0;
 
 			var gWebSearch, gImageSearch;
-			var imFeelingLuckyMode = false;
 			var resultBodies = [];
 
 			var gravity = { x: 0, y: 1 };
@@ -73,7 +72,7 @@
 				document.addEventListener( 'touchmove', onDocumentTouchMove, false );
 				document.addEventListener( 'touchend', onDocumentTouchEnd, false );
 
-				window.addEventListener( 'deviceorientation', onWindowDeviceOrientation, false );
+				// window.addEventListener( 'deviceorientation', onWindowDeviceOrientation, false );
 
 				// init box2d
 
@@ -132,26 +131,18 @@
 			//
 
 			function onDocumentMouseDown( event ) {
-
 				isMouseDown = true;
-
-
 			}
 
 			function onDocumentMouseUp( event ) {
-
 				isMouseDown = false;
-
 			}
 
 			function onDocumentMouseMove( event ) {
-
 				// if ( !isRunning ) run();
 
 				mouse.x = event.clientX;
 				mouse.y = event.clientY;
-
-
 			}
 
 			function onDocumentKeyUp( event ) {
@@ -211,8 +202,6 @@
 
 			}
 
-			//
-
 			function onElementMouseDown( event ) {
 
 				event.preventDefault();
@@ -239,8 +228,10 @@
 
 				}
 
-				if ( event.target == document.getElementById( 'btnG' ) ) search();
-				if ( event.target == document.getElementById( 'btnI' ) ) imFeelingLucky();
+				if ( event.target == document.getElementById( 'btnG' ) ) {
+					search();
+				}
+
 				if ( event.target == document.getElementById( 'q' ) ) document.getElementById('q').focus();
 
 			}
@@ -249,11 +240,7 @@
 
 			function search() {
 
-				if ( !isRunning ) {
-
-					run();
-
-				}
+				if ( !isRunning ) {		run(); 	}
 
 				if ( query == document.getElementById('q').value ) {
 
@@ -277,23 +264,7 @@
 
 			}
 
-			function imFeelingLucky() {
-
-				imFeelingLuckyMode = true;
-				gWebSearch.execute( document.getElementById('q').value );
-
-				return false;
-
-			}
-
 			function onWebSearch() {
-
-				if ( imFeelingLuckyMode ) {
-
-					location.href = gWebSearch.results[0].unescapedUrl;
-					return;
-
-				}
 
 				for ( var i = 0; i < gWebSearch.results.length; i ++ ) {
 
@@ -390,8 +361,8 @@
 				delta[0] += (0 - delta[0]) * .5;
 				delta[1] += (0 - delta[1]) * .5;
 
-				world.m_gravity.x = gravity.x * 350 + delta[0];
-				world.m_gravity.y = gravity.y * 350 + delta[1];
+				world.m_gravity.x = gravity.x * 700 + delta[0];
+				world.m_gravity.y = gravity.y * 700 + delta[1];
 
 				mouseDrag();
 				world.Step(timeStep, iterations);
@@ -425,7 +396,7 @@
 				var boxSd = new b2BoxDef();
 
 				if (!fixed)
-					boxSd.density = 1.0;
+					boxSd.density = 2.0;
 
 				boxSd.extents.Set(width, height);
 
@@ -450,7 +421,7 @@
 						md.body1 = world.m_groundBody;
 						md.body2 = body;
 						md.target.Set(mouse.x, mouse.y);
-						md.maxForce = 30000.0 * body.m_mass;
+						md.maxForce = 800.0 * body.m_mass; // adjust force of mouse pull against gravity here
 						md.timeStep = timeStep;
 						mouseJoint = world.CreateJoint(md);
 						body.WakeUp();
