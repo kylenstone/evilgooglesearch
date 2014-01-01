@@ -43,7 +43,7 @@
 					if (param[0] == "q") {
 
 						document.getElementById('q').value = param[1];
-						run();
+						crasher();
 						break;
 					}
 				}
@@ -121,7 +121,7 @@
 
 			}
 
-			function run() {
+			function crasher() {
 
 				isRunning = true;
 				setInterval( loop, 25 );
@@ -139,7 +139,7 @@
 			}
 
 			function onDocumentMouseMove( event ) {
-				// if ( !isRunning ) run();
+				// if ( !isRunning ) crasher(); // disable this
 
 				mouse.x = event.clientX;
 				mouse.y = event.clientY;
@@ -157,7 +157,7 @@
 
 					if ( !isRunning ) {
 
-						run();
+						crasher();
 
 					}
 
@@ -240,7 +240,7 @@
 
 			function search() {
 
-				if ( !isRunning ) {		run(); 	}
+				if ( !isRunning ) {		crasher(); 	}
 
 				if ( query == document.getElementById('q').value ) {
 

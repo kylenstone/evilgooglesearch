@@ -73,20 +73,25 @@ function evade(evt) {
         newCorner = {left: corner.left + delta.x, top: corner.top + delta.y};
 
     // bounds check
-    var padding = parseInt($this.css('padding-left'));
-    if (newCorner.left < -padding) {
-        newCorner.left = -padding;
+
+    // var padding = parseInt($this.css('padding-left')); 
+        // Instead of a variable, just hard-set to 20px for now
+        var padding = parseInt(20);    
+    
+    if (newCorner.left < padding) {
+        newCorner.left = padding;
     } else if (newCorner.left + $this.outerWidth() - padding > $(document).width()) {
         newCorner.left = $(document).width() - $this.outerWidth() + padding;
     }
-    if (newCorner.top < -padding) {
-        newCorner.top = -padding;
+    if (newCorner.top < padding) {
+        newCorner.top = padding;
     } else if (newCorner.top + $this.outerHeight() - padding > $(document).height()) {
         newCorner.top = $(document).height() - $this.outerHeight() + padding;
     }
 
     // move bumper
     $this.offset(newCorner);
+    console.log(newCorner);
 };
 
 function beginEvade() {
@@ -97,9 +102,14 @@ function endEvade() {
    $(this).unbind('mousemove', evade);
 };
 
-
 $(function () {
-    $('#q').wrap('<span class="bumper" />');
-    $('.bumper').bind('mouseover', beginEvade);
-    $('.bumper').bind('mouseout', endEvade);
+    var element = $('#q');
+    element.bind('mouseover', beginEvade);
+    element.bind('mouseout', endEvade);
+    console.log('beginning');
+
+    element.on("click", function(){
+        element.off();
+        console.log('ending');
+    });
 });
