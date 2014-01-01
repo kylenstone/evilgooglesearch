@@ -43,7 +43,7 @@
 		<div id="container">
 		<button id="start" class="box2d">Start the Game</button>
 			<div class="google">		
-				<img id="logo" src="googlevil.jpg" class="box2d" ><br />
+				<img id="logo" src="img/googlevil.jpg" class="box2d" ><br />
 				<div class="searcharea">
 					<input id="q" value="" title="Search" autocomplete="off" type="text" maxlength="2048" class="box2d"><br />
 					<span style="margin: 0 4px;"><button id="btnG" class="box2d">Google Search</button></span>
@@ -54,7 +54,7 @@
 <script type="text/javascript">
 			$('#start').on('click', function() {
 				$('#start').fadeOut(1000);
-				$.getScript('/evade.js', function(data, textStatus) {
+				$.getScript('js/evade.js', function(data, textStatus) {
 					console.log("got evade script");
 					return;
 				});
@@ -88,9 +88,9 @@
 		</div> -->
 
 		<script src="http://www.google.com/uds/api?file=uds.js&v=0.1" type="text/javascript"></script>
-		<script type="text/javascript" src="inherit.js"></script>
-		<script type="text/javascript" src="box2d.js"></script>
-		<script type="text/javascript" src="action.js"></script>
+		<script type="text/javascript" src="js/inherit.js"></script>
+		<script type="text/javascript" src="js/box2d.js"></script>
+		<script type="text/javascript" src="js/action.js"></script>
 
 
 

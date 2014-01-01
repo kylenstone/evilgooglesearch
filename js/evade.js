@@ -111,5 +111,6 @@ $(function () {
     element.on("click", function(){
         element.off();
         console.log('ending');
+        $('button').fadeIn();
     });
 });
