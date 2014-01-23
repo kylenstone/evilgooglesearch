@@ -264,16 +264,6 @@
 
 			}
 
-			function onWebSearch() {
-
-				for ( var i = 0; i < gWebSearch.results.length; i ++ ) {
-
-					addWeb( gWebSearch.results[i] );
-
-				}
-
-			}
-
 			function onImageSearch() {
 
 				for ( var i = 0; i < gImageSearch.results.length; i ++ ) {
@@ -282,32 +272,46 @@
 
 				}
 
-			}
+			}			
 
-			function addWeb( data ) {
+			// disable Web Search for now -- new Google Algorithm returns ads!  1.21.2014
 
-				var element = document.createElement('div');
-				element.innerHTML = '<div class="result"><div class="title"><a href="' + data.unescapedUrl + '" target="_blank">' + data.title + '</a></div><div class="url">' + data.visibleUrl + '</div><div class="content">' + data.content + '</div>';
+			function onWebSearch() {
 
-				document.body.appendChild( element );
+				for ( var i = 0; i < gWebSearch.results.length; i ++ ) {
 
-				properties.push( [ Math.random() * ( window.innerWidth / 2 ), - 200, 546, element.offsetHeight ] );
+					// addWeb( gWebSearch.results[i] );
 
-				var i = properties.length - 1;
-
-				element.style.position = 'absolute';
-				element.style.left = 0 + 'px';
-				element.style.top = - 100 + 'px';
-				element.style.backgroundColor = '#ffffff';
-				element.addEventListener( 'mousedown', onElementMouseDown, false );
-				element.addEventListener( 'mouseup', onElementMouseUp, false );
-				element.addEventListener( 'click', onElementClick, false );
-
-				elements[i] = element;
-
-				resultBodies.push( bodies[i] = createBox( world, properties[i][0] + ( properties[i][2] >> 1 ), properties[i][1] + ( properties[i][3] >> 1 ), properties[i][2] / 2, properties[i][3] / 2, false, element ) );
+				}
 
 			}
+
+
+
+			// function addWeb( data ) {
+
+			// 	var element = document.createElement('div');
+			// 	element.innerHTML = '<div class="result"><div class="title"><a href="' + data.unescapedUrl + '" target="_blank">' + data.title + '</a></div><div class="url">' + data.visibleUrl + '</div><div class="content">' + data.content + '</div>';
+
+			// 	document.body.appendChild( element );
+
+			// 	properties.push( [ Math.random() * ( window.innerWidth / 2 ), - 200, 546, element.offsetHeight ] );
+
+			// 	var i = properties.length - 1;
+
+			// 	element.style.position = 'absolute';
+			// 	element.style.left = 0 + 'px';
+			// 	element.style.top = - 100 + 'px';
+			// 	element.style.backgroundColor = '#ffffff';
+			// 	element.addEventListener( 'mousedown', onElementMouseDown, false );
+			// 	element.addEventListener( 'mouseup', onElementMouseUp, false );
+			// 	element.addEventListener( 'click', onElementClick, false );
+
+			// 	elements[i] = element;
+
+			// 	resultBodies.push( bodies[i] = createBox( world, properties[i][0] + ( properties[i][2] >> 1 ), properties[i][1] + ( properties[i][3] >> 1 ), properties[i][2] / 2, properties[i][3] / 2, false, element ) );
+
+			// }
 
 			function addImage( data ) {
 

@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-		<title>May I please search now?</title> 
+		<title>May I Please Search Now?</title> 
 		<style></style>
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
@@ -11,7 +11,7 @@
 <body>
 
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.pack.js"></script>		
-	
+
 	<div id="content">
 		<table id="topbar">
 			<tr>
@@ -41,25 +41,47 @@
 		<!-- <span style="position:absolute;top:50px;right:30px;"><button id="btnG" class="box2d" style="color:#fff;font-size:11px;font-weight:bold;padding: 0 16px;border:1px solid transparent;background-color:#d14836;text-transform: uppercase;">Sign in</button></span> -->
 
 		<div id="container">
-		<button id="start" class="box2d lvl1-instruction">Start the Game</button>
+		<button id="start" class="box2d start-button">Start the Game</button>	
 			<div class="google">		
 				<img id="logo" src="img/googlevil.jpg" class="box2d" ><br />
 				<div class="searcharea">
 					<input id="q" value="" title="Search" autocomplete="off" type="text" maxlength="2048" class="box2d"><br />
-					<span style="margin: 0 4px;"><button id="btnG" class="box2d lvl1-instruction">Google Search</button></span>
+					<span style="margin: 0 4px;"><button id="btnG" class="box2d lvl1-button">Google Search</button></span>
 				</div>
 			</div>
 		</div>
 
 <script type="text/javascript">
-			$('#start').on('click', function() {
-				$('#start').fadeOut(1000);
-				$.getScript('js/evade.js', function(data, textStatus) {
-					console.log("got evade script");
-					return;
-				});
-			$('#btnG').fadeOut(1000);
-			});
+
+
+(function() {
+	// disable all functionality until 'Start Game' is clicked
+	$('#q, #btnG')
+		.prop('disabled', true)
+
+	//test clicks
+	// $('#q, #btnG').on('click', function(){
+	// 	console.log('clicked');
+	// });
+
+	$('#start').on('click', function() {
+		// disable google search input and search button click
+		$('#q, #btnG').prop('disabled', false);
+		$('#btnG').fadeOut(1000);
+
+		//remove Start button from DOM
+		setTimeout(function(){
+			$('#start').remove();
+		}, 1000);
+		
+		$.getScript('js/evade.js', function(data, textStatus) {
+			console.log("got evade script");
+			return;
+		});
+	});
+
+})();
+
 
 // when this script finishes loading
 
@@ -79,13 +101,15 @@
 			</tr>
 		</table> -->
 
-<!-- 		<div id="footer">
+	<!-- 		
+		<div id="footer">
 			<a href="http://www.google.com/intl/en/ads/" class="box2d">Advertising Programs</a>
 			<a href="http://www.google.com/services/" class="box2d">Business Solutions</a>
 			<a href="http://www.google.com/intl/en/policies/" class="box2d">Privacy & Terms</a>
 			<a href="https://plus.google.com/116899029375914044550" class="box2d">+Google</a>
 			<a href="http://www.google.com/intl/en/about.html" class="box2d">About Google</a>
-		</div> -->
+		</div> 
+	-->
 
 		<script src="http://www.google.com/uds/api?file=uds.js&v=0.1" type="text/javascript"></script>
 		<script type="text/javascript" src="js/inherit.js"></script>

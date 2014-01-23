@@ -111,6 +111,6 @@ $(function () {
     element.on("click", function(){
         element.off();
         console.log('ending');
-        $('button #lvl1-instruction').fadeIn();
+        $('#lvl1-button').fadeIn();
     });
 });
